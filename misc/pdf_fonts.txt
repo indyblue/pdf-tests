@@ -1,0 +1,47 @@
+/Font << 
+	/ft << 
+		/Type/Font 
+		/Subtype/TrueType
+		/BaseFont/{PostScript name of font}
+		/FirstChar/{int}
+		/LastChar/{int}
+		/Widths [ 
+		]
+		/FontDescriptor << 
+			/Type/FontDescriptor
+			/FontName {PostScript name of font}
+			/Flags {uint32, following bits:
+				1- FixedPitch (width)
+				2- Serif
+				3- Symbolic
+				4- Script
+				6- Nonsymbolic
+				7- Italic
+				17- AllCap
+				18- SmallCap
+				19- ForceBold
+				}
+			/FontBBox {rectangle}
+			/ItalicAngle {number}
+			/Ascent {number}
+			/Descent {number}
+			/CapHeight {number}
+			/StemV {number}
+			/FontFile2 {stream, for ttf}
+
+			{optionals}
+			/FontStretch
+			/FontWeight
+			/Leading
+			/XHeight
+			/StemH {number}
+			/AvgWidth
+			/MaxWidth
+			/MissingWidth
+
+
+
+		>>
+		
+	>>
+

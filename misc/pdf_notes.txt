@@ -1,0 +1,185 @@
+%PDF-1.5 %one line header with version
+
+  %body containing objects
+1 0 obj
+ << /Type /Catalog
+   /Pages 2 0 R
+	/PageMode /UseOutlines
+	/Outlines 3 0 R
+ >>
+endobj
+
+2 0 obj
+ << /Type /Pages
+   /Kids [4 0 R  5 0 R  6 0 R  7 0 R]
+	/Count 4
+ >>
+endobj
+
+4 0 obj
+ << /Type /Page
+   /Parent 2 0 R
+	/Resources << /FONT << /F1 99 0 R /F2 111 0 R /F3 122 0 R >>
+	  >>
+	/MediaBox [0 0 500 500]
+	/CropBox [0 0 500 500]
+	/BleedBox [0 0 500 500]
+	/TrimBox [0 0 500 500]
+	/ArtBox [0 0 500 500]
+	/Contents 44 0 R
+
+	
+ >>
+endobj
+
+...	
+
+1 0 obj
+ << /Length 2 0 R
+  /Filter [/ASCII85Decode /LZWDecode]
+  /DecodeParms []
+  /F (./../asdf/x.txt)  %file specification
+  /FFilter []
+  /FDecodeParms []
+  /DL 000  %decoded bytes, optional
+ >>
+
+stream
+endstream
+endobj
+
+44 0 obj
+ << /Length 1234 >>
+stream
+ %gen graphics state
+ w lineWidth %(set line width)
+ J lineCap %(0 (butt cap) 1 (round cap) 2 (projecting square cap))
+ j lineJoin %(0 (miter join) 1 (round join) 2 (bevel join))
+ M miterLimit %(set miter limit)
+ d dashArray dashPhase %([x] (x on, x off) [x y] (x on, y off) phase (how many of pattern to skip before starting))
+ ri intent %(set color rendering intent)
+ i flatness %(set flatness tolernace in graphics state)
+ gs dictName %(set the specified parms in the graphics state)
+ %special graphics state
+ q %(save current graphics state on graphics state stack)
+ Q %(restore graphics state by popping top entry off graphics state stack)
+ cm a b c d e f %(modify current transformation matrix by concatenating specified matrix)
+ %path construction
+ m x y %(move to coords, don't draw)
+ l x y %(straigh line from current to coords)
+ c x1 y2 x2 y2 x3 y3 %(bezier curve from current point to x3 y3, using 1 and 2 as control points)
+ v x2 y2 x3 y3 %(bezier curve ctl pt 1 = current point)
+ y x1 y1 x3 y3 %(bezier curve ctl pt 2 = 3)
+ h %(close current subpath w/ straight line to starting point)
+ re x y w h %(add rectangle to current path, lower left corner, w&h)
+ %path painting
+ S %(stroke the path)
+ s %(close and stroke path, same as h S)
+ f,F %(fill the path)
+ f* %(fill, using even-odd rule)
+ B %(fill then stroke using nonzero winding rule)
+ B* %(fill then stroke, using even-odd rule)
+ b %(close, fill then stroke using nonzero winding)
+ b* %("" using even-odd)
+ n %(end path without filling or stroking)
+ %clipping paths
+ W %(modify current clipping path intersecting it with current path, using nonzero winding)
+ W* %("" using even-odd)
+ %text objects
+ BT
+ ET
+ %text state
+ Tc
+ Tw
+ Tz
+ TL
+ Tf
+ Tr
+ Ts
+ %text positioning
+ Td
+ TD
+ Tm
+ T*
+ %text showing
+ Tj
+ TJ
+ '
+ "
+ %type 3 fonts
+ d0
+ d1
+ %color
+ CS %(set stroking color space)
+ cs %(set non stroking color space)
+ SC %(set stroking color)
+ SCN
+ sc %(set non stroking color)
+ scn
+ G %(set stroking color space implicity and stroking color by operands)
+ g %("" non-stroking)
+ RG
+ rg
+ K
+ k
+ %shading patterns
+ sh
+ %inline images
+ BI
+ ID
+ EI
+ %xobjects
+ Do
+ %marked content
+ MP
+ DP
+ BMC
+ BDC
+ EMC
+ %compatibility
+ BX
+ EX
+
+endstream
+endobj
+
+2 0 obj
+  12345
+endobj
+
+3 0 obj
+<<
+  /Type /Example
+  /Subtype /DictionaryExample
+  /Version 0.01
+  /IntegerItem 12
+  /StringItem (a string)
+  /Subdictionary <<
+    /Item1 0.4
+    /Item2 true
+    /LastItem (not!)
+    /VeryLastItem (OK)
+  >>
+>>
+endobj
+
+  %cross reference table with info about indirect objects
+xref
+0 3 % num of first obj, count of entries in subsection
+0000000004 65536 f % (zero obj is always free) (always gen # 65536)
+nnnnnnnnnn ggggg n eol % (10 digit byte offset) (5 digit gen num) [n (in use)]
+nnnnnnnnnn ggggg n eol % (10 digit next free obj) (5 digit gen num) [f (free/deleted)]
+
+
+  %trailer with location of cross reference table and special objects
+trailer
+ << /Size 0 %(total # entries in xref table
+   /Pref 0 %(only if more than one xref section
+	/Root << >> %(catalog dictionary of pdf doc
+	/Encrypt << >> %(if encrypted, encryption dictionary
+	/Info 4 0 R %(must be indirect ref to info dictionary)
+	/ID [] %(required if encrypted, optional otherwise)
+
+ >>
+startxref 000 % byte offset of last cross reference section
+%%EOF
