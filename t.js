@@ -28,11 +28,12 @@ pr.next(()=> {
 	var txt = "Declína a malo, et fac bonum: * et inhábita in sǽculum sǽculi.";
 	var txt1 = 'Beátus vir, qui non ábiit in consílio impiórum, et in via peccatórum non stetit, * et in cáthedra pestiléntiæ non sedit: Sed in lege Dómini volúntas ejus, * et in lege ejus meditábitur die ac nocte.  Et erit tamquam lignum, quod plantátum est secus decúrsus aquárum, * quod fructum suum dabit in témpore suo: Et fólium ejus non défluet: * et ómnia quæcúmque fáciet, prosperabúntur.  Non sic ímpii, non sic: * sed tamquam pulvis, quem prójicit ventus a fácie terræ.  Ídeo non resúrgent ímpii in judício: * neque peccatóres in concílio justórum.  Quóniam novit Dóminus viam justórum: * et iter impiórum períbit.';
 
+	np.stream = '.1 w 0 0 1 rg '+np.box();
 	np.startText();
-	np.setStyle(6,12,14,'0 g');
+	np.setStyle(6,22,20,'0 g','c');
 	np.addText('AD PRIMAM');
 	np.nl();
-	np.setStyle(5,12,14,'0 1 1 0 k'); np.addText('V. ');
+	np.setStyle(5,12,14,'0 1 1 0 k','j'); np.addText('V. ');
 	np.setStyle(1,12,14,'0 g'); np.addText(txt);
 	np.setStyle(5,12,14,'0 1 1 0 k'); np.addText(' R. ');
 	np.setStyle(2,12,14,'0 g'); np.addText(txt);
