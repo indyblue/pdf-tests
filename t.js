@@ -26,24 +26,34 @@ pr.next(()=> {
 	np.stream = "2 J BT /ft 12 Tf 0 Tc 0 Tw 30 460 TD [(This is a test) -4265 (whatever)] TJ 0 -14 TD [(line 2)] TJ T* [(line 3) -7000 (and more)] TJ (line 4) ' 0 -14 TD \n";
 	*/
 	var txt = "Declína a malo, et fac bonum: * et inhábita in sǽculum sǽculi.";
-	var txt1 = 'Beátus vir, qui non ábiit in consílio impiórum, et in via peccatórum non stetit, * et in cáthedra pestiléntiæ non sedit: Sed in lege Dómini volúntas ejus, * et in lege ejus meditábitur die ac nocte.  Et erit tamquam lignum, quod plantátum est secus decúrsus aquárum, * quod fructum suum dabit in témpore suo: Et fólium ejus non défluet: * et ómnia quæcúmque fáciet, prosperabúntur.  Non sic ímpii, non sic: * sed tamquam pulvis, quem prójicit ventus a fácie terræ.  Ídeo non resúrgent ímpii in judício: * neque peccatóres in concílio justórum.  Quóniam novit Dóminus viam justórum: * et iter impiórum períbit.';
+	var txt1 = 'Beátus vir, qui non ábiit in consílio impiórum, et in via peccatórum non stetit, * et in cáthedra pestiléntiæ non sedit: Sed in lege Dómini volúntas ejus, * et in lege ejus meditábitur die ac nocte.  Et erit tamquam lignum, quod plantátum est secus decúrsus aquárum, * quod fructum suum dabit in témpore suo: Et fólium ejus non défluet: * et ómnia quæcúmque fáciet, prosperabúntur.  Non sic ímpii, non sic: * sed tamquam pulvis, quem prójicit ventus a fácie terræ.  Ídeo non resúrgent ímpii in judício: * neque peccatóres in concílio justórum. Quóniam novit Dóminus viam justórum: * et iter impiórum períbit.';
 
-	np.stream = '.1 w 0 0 1 rg '+np.box();
-	np.startText();
-	np.setStyle(6,22,20,'0 g','c');
-	np.addText('AD PRIMAM');
-	np.nl();
-	np.setStyle(5,12,14,'0 1 1 0 k','j'); np.addText('V. ');
-	np.setStyle(1,12,14,'0 g'); np.addText(txt);
-	np.setStyle(5,12,14,'0 1 1 0 k'); np.addText(' R. ');
-	np.setStyle(2,12,14,'0 g'); np.addText(txt);
-	np.setStyle(5,12,14,'0 1 1 0 k'); np.addText(' R. ');
-	np.setStyle(3,12,14,'0 g'); np.addText(txt);
-	np.setStyle(5,12,14,'0 1 1 0 k'); np.addText(' R. ');
-	np.setStyle(4,12,14,'0 g'); np.addText(txt);
-	np.nl();
-	np.setStyle(1,12,14,'0 g'); np.addText(txt1);
-	np.endText();
+	//console.log(pdf.cp, pdf.pages[0], pdf.pages.length);
+	pdf.cp.stream = '.1 w 0 0 1 rg '+pdf.cp.box();
+	pdf.cp.startText();
+	pdf.cp.setStyle(6,16,'100%','0 g','c');
+	pdf.cp.addText('AD PRIMAM',1);
+	pdf.cp.setStyle(5,12,14,'0 1 1 0 k','j'); pdf.cp.addText('V. ');
+	pdf.cp.setStyle(1,12,14,'0 g'); pdf.cp.addText(txt);
+	pdf.cp.setStyle(5,12,14,'0 1 1 0 k'); pdf.cp.addText(' R. ');
+	pdf.cp.setStyle(2,12,14,'0 g'); pdf.cp.addText(txt);
+	pdf.cp.setStyle(5,12,14,'0 1 1 0 k'); pdf.cp.addText(' R. ');
+	pdf.cp.setStyle(3,12,14,'0 g'); pdf.cp.addText(txt);
+	pdf.cp.setStyle(5,12,14,'0 1 1 0 k'); pdf.cp.addText(' R. ');
+	pdf.cp.setStyle(4,12,14,'0 g'); pdf.cp.addText(txt,1);
+	pdf.cp.setStyle(1,12,14,'0 g'); pdf.cp.addText(txt1,1);
+	pdf.cp.setStyle(1,12,14,'0 g'); pdf.cp.addText(txt1,1);
+	pdf.cp.setStyle(1,12,14,'0 g'); pdf.cp.addText(txt1,1);
+
+	pdf.cp.setStyle(6,16,'200%','0 g','c'); pdf.cp.addText('AD PRIMAM',1);
+	pdf.cp.setStyle(1,12,14,'0 g','j'); pdf.cp.addText(txt1,1);
+	pdf.cp.setStyle(6,16,'200%','0 g','c'); pdf.cp.addText('AD PRIMAM',1);
+	pdf.cp.setStyle(1,12,14,'0 g','j'); pdf.cp.addText(txt1,1);
+	pdf.cp.setStyle(6,16,'200%','0 g','c'); pdf.cp.addText('AD PRIMAM',1);
+	pdf.cp.setStyle(1,12,14,'0 g','j'); pdf.cp.addText(txt1,1);
+	pdf.cp.setStyle(6,16,'200%','0 g','c'); pdf.cp.addText('AD PRIMAM',1);
+	pdf.cp.setStyle(1,12,14,'0 g','j'); pdf.cp.addText(txt1,1);
+	pdf.cp.endText();
 	/*
 	var ub = new Buffer(txt, 'utf16le');
 	for(var i=0;i<ub.length-1;i+=2){
