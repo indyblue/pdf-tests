@@ -1,35 +1,37 @@
 var path = require('path');
 var promise = require('./pdf-tool/promise.js');
-//var ttf = require('./ttf_parse.js');
 var pdfTool = require('./pdf-tool');
 var utf8 = require('utf8');
+
 
 var pdf = pdfTool.new();
 var pr = promise.new();
 
-/*
+//*
 var style = require('./pdf-tool/pdf-style.js');
-var def = style.default;
-var p = def.page;
+var ltr = style.letter();
+var qleg = style.qlegal({font:{fid:4, color:'0 1 1 0 k'}});
+promise.extend(ltr, {block:{_tabs:[
+	{ position: '.5*ppi' }, 
+	{ position: '1*ppi' }, 
+	{ position: '1.5*ppi' }, 
+	{ position: '2*ppi' }, 
+	{ position: '2.5*ppi' }, 
+	{position: 'this.xw',align:'l'}
+]}});
+console.log(qleg.block.xw, qleg.block.tabs);
+console.log(ltr.block.xw, ltr.block.tabs);
+var p = qleg.page;
 p.margin=1;
 p.gutter=1;
 //p.num=2;
 p.units='in';
+return;
+/*
 console.log(p.units, p.x0, p.xmax, p.y0, p.ymin,
 	p.getMargin(1), p.getMargin(2), p.getMargin(3), p.getMargin(4),
 	p.pointsPerUnit);
 //pr.debug='m';
-var z1 = { a:2, b:3, z:4, q:'asdf', 
-	fn: function(){ return this.a*this.b},
-	get ps() {return this.a;}, 
-	get gs() {return this.a;},
-	set gs(v){ this.a=v;}
-};
-var z2 = { c:5, d:7, a:99, z:'z2 was here'};
-var z3 = { e:9, f:'asdf', g:'z3 was here', d:99};
-var z4 = promise.extend({},z1,z2,z3);
-console.log(z4, z4.fn(), z4.gs);
-return;
 // */
 
 pr.next(()=> {
