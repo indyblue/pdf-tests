@@ -2,13 +2,12 @@ var path = require('path');
 var promise = require('./pdf-tool/promise.js');
 var pdfTool = require('./pdf-tool');
 var utf8 = require('utf8');
-
+var style = require('./pdf-tool/pdf-style.js');
 
 var pdf = pdfTool.new();
 var pr = promise.new();
 
-//*
-var style = require('./pdf-tool/pdf-style.js');
+/*
 var ltr = style.letter();
 var qleg = style.qlegal({font:{fid:4, color:'0 1 1 0 k'}});
 promise.extend(ltr, {block:{_tabs:[
@@ -43,18 +42,30 @@ pr.next(()=> {
 			'./pdf/ttf/freeserifBoldItalic.ttf',
 			'./pdf/ttf/FancyVR.ttf',
 			'./pdf/ttf/oldlondon.ttf'
-		]
+		],
+		styles: {
+			default: 'qlegal',
+			vr: {font:{fid:5, color:'0 1 1 0 k'}},
+			rubric: {font:{fid:3, color:'0 1 1 0 k'}},
+			b: {font:{fid:2}},
+			i: {font:{fid:3}},
+			bi: {font:{fid:4}}
+		}
 	}, pr.trigger)
 }).next(()=> { 
 	console.log('create new page');
-	var np = pdf.newPage();
+	var np = pdf.page;
 	/*
 	np.stream = "2 J BT /ft 12 Tf 0 Tc 0 Tw 30 460 TD [(This is a test) -4265 (whatever)] TJ 0 -14 TD [(line 2)] TJ T* [(line 3) -7000 (and more)] TJ (line 4) ' 0 -14 TD \n";
 	*/
 	var txt = "Declína a malo, et fac bonum: * et inhábita in sǽculum sǽculi.";
 	var txt1 = 'Beátus vir, qui non ábiit in consílio impiórum, et in via peccatórum non stetit, * et in cáthedra pestiléntiæ non sedit: Sed in lege Dómini volúntas ejus, * et in lege ejus meditábitur die ac nocte.  Et erit tamquam lignum, quod plantátum est secus decúrsus aquárum, * quod fructum suum dabit in témpore suo: Et fólium ejus non défluet: * et ómnia quæcúmque fáciet, prosperabúntur.  Non sic ímpii, non sic: * sed tamquam pulvis, quem prójicit ventus a fácie terræ.  Ídeo non resúrgent ímpii in judício: * neque peccatóres in concílio justórum. Quóniam novit Dóminus viam justórum: * et iter impiórum períbit.';
 
+	var wrd = 'Declína';
+	var x = np.parseWord(txt);
+	console.log(x);
 	//console.log(pdf.cp, pdf.pages[0], pdf.pages.length);
+	/*
 	pdf.cp.stream = '.1 w 0 0 1 rg '+pdf.cp.box();
 	pdf.cp.startText();
 	pdf.cp.setStyle(6,16,'100%','0 g','c');
@@ -80,23 +91,6 @@ pr.next(()=> {
 	pdf.cp.setStyle(6,16,'200%','0 g','c'); pdf.cp.addText('AD PRIMAM',1);
 	pdf.cp.setStyle(1,12,14,'0 g','j'); pdf.cp.addText(txt1,1);
 	pdf.cp.endText();
-	/*
-	var ub = new Buffer(txt, 'utf16le');
-	for(var i=0;i<ub.length-1;i+=2){
-		var u0 = ub[i];
-		ub[i] = ub[i+1];
-		ub[i+1] = u0;
-	}
-
-	utxt = ub.toString('binary');
-	np.stream += "/F1 12 Tf [(" + utxt + ")] TJ 0 -14 TD \n";
-	np.stream += "/F2 12 Tf [(" + utxt + ")] TJ 0 -14 TD \n";
-	np.stream += "/F3 12 Tf [(" + utxt + ")] TJ 0 -14 TD \n";
-	np.stream += "/F4 12 Tf [(" + utxt + ")] TJ 0 -14 TD \n";
-	np.stream += "/F5 12 Tf [(" + utxt + ")] TJ 0 -14 TD \n";
-	np.stream += "/F6 12 Tf [(" + utxt + ")] TJ 0 -14 TD \n";
-
-	np.stream += "ET";
 	*/
 	pr.trigger();
 }).next(()=> { 
