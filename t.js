@@ -49,7 +49,8 @@ pr.next(()=> {
 			rubric: {font:{fid:3, color:'0 1 1 0 k'}},
 			b: {font:{fid:2}},
 			i: {font:{fid:3}},
-			bi: {font:{fid:4}}
+			bi: {font:{fid:4}},
+			head: {font:{fid:6, size:14, lead:14, color:'0 1 1 0 k'}}
 		}
 	}, pr.trigger)
 }).next(()=> { 
@@ -58,11 +59,52 @@ pr.next(()=> {
 	/*
 	np.stream = "2 J BT /ft 12 Tf 0 Tc 0 Tw 30 460 TD [(This is a test) -4265 (whatever)] TJ 0 -14 TD [(line 2)] TJ T* [(line 3) -7000 (and more)] TJ (line 4) ' 0 -14 TD \n";
 	*/
-	var txt = "Declína a malo, et fac bonum: * et inhábita in sǽculum sǽculi.";
-	var txt1 = 'Beátus vir, qui non ábiit in consílio impiórum, et in via peccatórum non stetit, * et in cáthedra pestiléntiæ non sedit: Sed in lege Dómini volúntas ejus, * et in lege ejus meditábitur die ac nocte.  Et erit tamquam lignum, quod plantátum est secus decúrsus aquárum, * quod fructum suum dabit in témpore suo: Et fólium ejus non défluet: * et ómnia quæcúmque fáciet, prosperabúntur.  Non sic ímpii, non sic: * sed tamquam pulvis, quem prójicit ventus a fácie terræ.  Ídeo non resúrgent ímpii in judício: * neque peccatóres in concílio justórum. Quóniam novit Dóminus viam justórum: * et iter impiórum períbit.';
+	var txt = "De­clí­na  a \tma­lo, et fac bo­num: * et in­há­bi­ta in sǽ­cu­lum sǽ­cu­li.";
+	//var txt = "Declína a malo, et fac bonum: * et inhábita in sǽculum sǽculi.";
+	var txt1 = 'Beátus vir, qui non ábiit in consílio im­piórum, et in via peccatórum non ste­tit, * et in cáthedra pestiléntiæ non sedit: Sed in lege Dómini vo­lún­tas ejus, * et in lege ejus me­di­tá­bi­tur die ac nocte.  Et erit tamquam lignum, quod plantátum est secus de­cúr­sus aquárum, * quod fructum suum dabit in témpore suo: Et fó­li­um ejus non défluet: * et ómnia quæ­cúm­que fáciet, prosperabúntur.  Non sic ímpii, non sic: * sed tam­quam pulvis, quem prójicit ventus a fácie terræ.  Ídeo non resúrgent ím­pii in judício: * neque peccatóres in concílio justórum. Quóniam novit Dó­mi­nus viam justórum: * et iter im­pi­ó­rum períbit.';
 
 	var wrd = 'Declína';
-	var x = np.parseWord(txt);
+	np.pushStyle('vr');
+	var x = np.parseLine('V.',0);
+	np.popStyle();
+	var x = np.parseLine(' Declína a malo, et fac bonum:',1);
+	np.pushStyle('vr');
+	var x = np.parseLine(' R.',0);
+	np.popStyle();
+	var x = np.parseLine(' Et inhábita in sǽculum sǽculi.',1);
+
+	np.pushStyle('head');
+	var x = np.parseLine('Declina a Malo',1);
+	np.popStyle();
+	var x = np.parseLine(txt1,0);
+	np.pushStyle('rubric');
+	var x = np.parseLine('  '+txt1,0);
+	np.popStyle();
+	np.pushStyle('b');
+	var x = np.parseLine('  '+txt1,0);
+	np.popStyle();
+	var x = np.parseLine('  '+txt1,0);
+	np.pushStyle('bi');
+	var x = np.parseLine('  '+txt1,0);
+	np.popStyle();
+	var x = np.parseLine('  '+txt1,0);
+	var x = np.parseLine('  '+txt1,0);
+	var x = np.parseLine('  '+txt1,1);
+	//console.log('lb', np.lineBuffer);
+	//console.log('xw',np.style.block.xw);
+	np.flushPage();
+	np.endPage();
+	// block.xw, page: x0, xmax, y0, ymin, yh
+	/* 
+		- construct line array using block.xw
+		- unless something else happens, add line array and compare to page.yh?
+			- iterate array until last entry before sum>=yh
+			- repeat for other columns
+			- once all columns are full, or once block/section style changes,
+				- balance lines between columns
+				- write them, noting the x position on page after write
+			- eventually we're going to have to figure out the v-align stuff too
+	*/
 	console.log(x);
 	//console.log(pdf.cp, pdf.pages[0], pdf.pages.length);
 	/*
