@@ -44,13 +44,17 @@ pr.next(()=> {
 			'./pdf/ttf/oldlondon.ttf'
 		],
 		styles: {
+			//default: style.qlegal({block:{align:'j'}}),
 			default: 'qlegal',
 			vr: {font:{fid:5, color:'0 1 1 0 k'}},
 			rubric: {font:{fid:3, color:'0 1 1 0 k'}},
 			b: {font:{fid:2}},
 			i: {font:{fid:3}},
 			bi: {font:{fid:4}},
-			head: {font:{fid:6, size:14, lead:14, color:'0 1 1 0 k'}}
+			drop: { block: { 
+				drop: { chars: 1, fid: 6, size:22, lead:18, color: '0 1 1 0 k' } } },
+			head: {font:{fid:6, size:14, lead:14, color:'0 1 1 0 k'},
+					block:{align:'c'}}
 		}
 	}, pr.trigger)
 }).next(()=> { 
@@ -59,24 +63,30 @@ pr.next(()=> {
 	/*
 	np.stream = "2 J BT /ft 12 Tf 0 Tc 0 Tw 30 460 TD [(This is a test) -4265 (whatever)] TJ 0 -14 TD [(line 2)] TJ T* [(line 3) -7000 (and more)] TJ (line 4) ' 0 -14 TD \n";
 	*/
-	var txt = "De­clí­na  a \tma­lo, et fac bo­num: * et in­há­bi­ta in sǽ­cu­lum sǽ­cu­li.";
+	var txt = "De­clí­na a ma­lo, et fac bo­num: * et in­há­bi­ta in sǽ­cu­lum sǽ­cu­li.";
 	//var txt = "Declína a malo, et fac bonum: * et inhábita in sǽculum sǽculi.";
-	var txt1 = 'Beátus vir, qui non ábiit in consílio im­piórum, et in via peccatórum non ste­tit, * et in cáthedra pestiléntiæ non sedit: Sed in lege Dómini vo­lún­tas ejus, * et in lege ejus me­di­tá­bi­tur die ac nocte.  Et erit tamquam lignum, quod plantátum est secus de­cúr­sus aquárum, * quod fructum suum dabit in témpore suo: Et fó­li­um ejus non défluet: * et ómnia quæ­cúm­que fáciet, prosperabúntur.  Non sic ímpii, non sic: * sed tam­quam pulvis, quem prójicit ventus a fácie terræ.  Ídeo non resúrgent ím­pii in judício: * neque peccatóres in concílio justórum. Quóniam novit Dó­mi­nus viam justórum: * et iter im­pi­ó­rum períbit.';
+	var txt1 = 'Beátus vir, qui non ábiit in consílio im­piórum, et in via peccatórum non ste­tit, * et in cáthedra pestiléntiæ non sedit: Sed in lege Dómini vo­lún­tas ejus, * et in lege ejus me­di­tá­bi­tur die ac nocte.\tEt erit tamquam lignum, quod plantátum est secus de­cúr­sus aquárum, * quod fructum suum dabit in témpore suo: Et fó­li­um ejus non défluet: * et ómnia quæ­cúm­que fáciet, prosperabúntur. Non sic ímpii, non sic: * sed tam­quam pulvis, quem prójicit ventus a fácie terræ. Ídeo non resúrgent ím­pii in judício: * neque peccatóres in concílio justórum. Quóniam novit Dó­mi­nus viam justórum: * et iter im­pi­ó­rum períbit.';
 
-	var wrd = 'Declína';
 	np.pushStyle('vr');
 	var x = np.parseLine('V.',0);
 	np.popStyle();
-	var x = np.parseLine(' Declína a malo, et fac bonum:',1);
+	var x = np.parseLine(' De­us in ad­ju­tó­ri­um me­um in­tén­de.',1);
 	np.pushStyle('vr');
 	var x = np.parseLine(' R.',0);
 	np.popStyle();
-	var x = np.parseLine(' Et inhábita in sǽculum sǽculi.',1);
+	var x = np.parseLine(' Dó­mi­ne ad ad­ju­ván­dum me fes­tí­na.',1);
 
 	np.pushStyle('head');
 	var x = np.parseLine('Declina a Malo',1);
 	np.popStyle();
-	var x = np.parseLine(txt1,0);
+
+	np.pushStyle('drop');
+	var x = np.parseLine(txt1,2);
+	/*
+	for(var i=65; i<91;i++)
+		var x = np.parseLine(String.fromCharCode(i)+txt+' '+txt,2);
+	np.popStyle();
+	/*
 	np.pushStyle('rubric');
 	var x = np.parseLine('  '+txt1,0);
 	np.popStyle();
@@ -92,6 +102,7 @@ pr.next(()=> {
 	var x = np.parseLine('  '+txt1,1);
 	//console.log('lb', np.lineBuffer);
 	//console.log('xw',np.style.block.xw);
+	// */
 	np.flushPage();
 	np.endPage();
 	// block.xw, page: x0, xmax, y0, ymin, yh
