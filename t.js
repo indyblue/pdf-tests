@@ -52,7 +52,9 @@ pr.next(()=> {
 			i: {font:{fid:3}},
 			bi: {font:{fid:4}},
 			drop: { block: { 
-				drop: { chars: 1, fid: 6, size:22, lead:18, color: '0 1 1 0 k' } } },
+				drop: { chars: 1, fid: 6, lead:18, size:18*1.3, color: '0 1 1 0 k' } } },
+			drop6: { block: { 
+				drop: { chars: 1, fid: 6, lead:45, size:45*1.4, color: '0 1 1 0 k' } } },
 			head: {font:{fid:6, size:14, lead:14, color:'0 1 1 0 k'},
 					block:{align:'c'}}
 		}
@@ -80,8 +82,26 @@ pr.next(()=> {
 	var x = np.parseLine('Declina a Malo',1);
 	np.popStyle();
 
+	// np.pushStyle('drop');
+	// var x = np.parseLine(txt1,2);
+//*
+	np.pushStyle('drop6');
+	var x = np.parseLine('In te, Dó­mi­ne, spe­rá­vi, * non con­fun­dar in.',2);
+	np.popStyle();
+	var x = np.parseLine('In te, Dó­mi­ne, spe­rá­vi, * non con­fun­dar in.',2);
+	var x = np.parseLine('In te, Dó­mi­ne, spe­rá­vi, * non con­fun­dar in.',2);
 	np.pushStyle('drop');
-	var x = np.parseLine(txt1,2);
+	var x = np.parseLine('Dó­mi­ne, Dó­mi­nus nos­ter, * quam ad­mi­rá­bi­le est no­men tu­um in uni­vér­sa ter­ra!',2);
+	np.popStyle();
+	var x = np.parseLine('Quó­ni­am ele­vá­ta est mag­ni­fi­cén­tia tua, * su­per cæ­los.',2);
+	var x = np.parseLine('Ex ore in­fán­tium et lac­tén­tium per­fe­cís­ti lau­dem prop­ter ini­mí­cos tu­os, * ut dé­stru­as ini­mí­cum et ul­tó­rem.',2);
+	var x = np.parseLine('Quó­ni­am vi­dé­bo cæ­los tu­os, ópe­ra di­gi­tó­rum tu­ó­rum: * lu­nam et stel­las, quæ tu fun­dás­ti.',2);
+	var x = np.parseLine('Quid est ho­mo quod me­mor es ejus? * aut fí­li­us hó­mi­nis, quó­ni­am ví­si­tas eum?',2);
+	var x = np.parseLine('Minu­ís­ti eum pau­lo mi­nus ab An­ge­lis, gló­ria et ho­nó­re co­ro­nás­ti eum: * et con­sti­tu­ís­ti eum su­per ópe­ra má­nu­um tu­á­rum.',2);
+	var x = np.parseLine('Omnia sub­je­cís­ti sub pé­di­bus ejus, * oves et bo­ves uni­vér­sas: ín­su­per et pé­co­ra cam­pi.',2);
+	var x = np.parseLine('Vólu­cres cæ­li, et pis­ces ma­ris, * qui per­ám­bu­lant sé­mi­tas ma­ris.',2);
+	var x = np.parseLine('Dómi­ne, Dó­mi­nus nos­ter, * quam ad­mi­rá­bi­le est no­men tu­um in uni­vér­sa ter­ra!',2);
+// */
 	/*
 	for(var i=65; i<91;i++)
 		var x = np.parseLine(String.fromCharCode(i)+txt+' '+txt,2);
