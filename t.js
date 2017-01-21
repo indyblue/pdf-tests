@@ -32,7 +32,7 @@ console.log(p.units, p.x0, p.xmax, p.y0, p.ymin,
 	p.pointsPerUnit);
 //pr.debug='m';
 // */
-
+var dt0 = Date.now();
 pr.next(()=> {
 	pdf.init({
 		fonts: [
@@ -44,18 +44,22 @@ pr.next(()=> {
 			'./pdf/ttf/oldlondon.ttf'
 		],
 		styles: {
-			default: style.qlegal({font:{size:8},block:{align:'j'}}),
+			default: style.qlegal({
+				font:{size:8},
+				block:{align:'j'},
+				section:{columns:3, spacing:0.1}
+			}),
 			//default: 'qlegal',
 			vr: {font:{fid:5, color:'0 1 1 0 k'}},
 			rubric: {font:{fid:3, color:'0 1 1 0 k'}},
-			tilde: {font:{fid:6, size:9, color:'0 .5 .5 0 k', rise:0, spacing:0 }},
+			tilde: {font:{fid:6, color:'0 .5 .5 0 k' }},
 			b: {font:{fid:2}},
 			i: {font:{fid:3}},
 			bi: {font:{fid:4}},
 			sp1: {font:{spacing:1}},
 			sup: {font:{rise:4, size:5 }},
 			drop: { block: { 
-				drop: { chars: 1, fid: 6, lead:18, size:18*1.3, color: '0 1 1 0 k' } } },
+				drop: { chars: 1, fid: 6, lead:24, size:24*1.3, color: '0 1 1 0 k' } } },
 			drop6: { block: { 
 				drop: { chars: 1, fid: 6, lead:45, size:45*1.4, color: '0 1 1 0 k' } } },
 			head: {font:{fid:6, size:14, lead:14, color:'0 1 1 0 k'},
@@ -63,7 +67,7 @@ pr.next(()=> {
 		}
 	}, pr.trigger)
 }).next(()=> { 
-	console.log('create new page');
+	console.log('create new page', (Date.now()-dt0)/1e3); dt0 = Date.now();
 	var np = pdf.page;
 	/*
 	np.stream = "2 J BT /ft 12 Tf 0 Tc 0 Tw 30 460 TD [(This is a test) -4265 (whatever)] TJ 0 -14 TD [(line 2)] TJ T* [(line 3) -7000 (and more)] TJ (line 4) ' 0 -14 TD \n";
@@ -84,10 +88,11 @@ pr.next(()=> {
 	np.popStyle();
 	var x = np.parseLine(' Dó­mi­ne ad ad­ju­ván­dum me fes­tí­na.',0);
 	np.pushStyle('sup');
-	var x = np.parseLine('24',1);
+	var x = np.parseLine('24',0);
 	np.popStyle();
+	var x = np.parseLine('',1);
 	np.pushStyle('sp1');
-	var x = np.parseLine(txt1,1);
+	//var x = np.parseLine(txt1,1);
 	np.popStyle();
 
 	np.pushStyle('head');
@@ -114,11 +119,14 @@ pr.next(()=> {
 	var x = np.parseLine('Vólu­cres cæ­li, et pis­ces ma­ris, * qui per­ám­bu­lant sé­mi­tas ma­ris.',2);
 	var x = np.parseLine('Dómi­ne, Dó­mi­nus nos­ter, * quam ad­mi­rá­bi­le est no­men tu­um in uni­vér­sa ter­ra!',2);
 // */
-	/*
-	for(var i=65; i<91;i++)
+	//*
+	np.pushStyle('drop');
+	for(var i=65; i<91;i++) {
+		console.log('dt',i, String.fromCharCode(i));
 		var x = np.parseLine(String.fromCharCode(i)+txt+' '+txt,2);
+	}
 	np.popStyle();
-	/*
+	//*
 	np.pushStyle('rubric');
 	var x = np.parseLine('  '+txt1,0);
 	np.popStyle();
@@ -129,61 +137,28 @@ pr.next(()=> {
 	np.pushStyle('bi');
 	var x = np.parseLine('  '+txt1,0);
 	np.popStyle();
-	var x = np.parseLine('  '+txt1,0);
-	var x = np.parseLine('  '+txt1,0);
-	var x = np.parseLine('  '+txt1,1);
+	np.pushStyle('drop');
+	for(var i=1;i<4;i++){
+		console.log('filler',i, 4);
+		var x = np.parseLine(txt1,3);
+	}
+	np.popStyle();
 	//console.log('lb', np.lineBuffer);
 	//console.log('xw',np.style.block.xw);
 	// */
 	np.flushPage();
 	np.endPage();
-	// block.xw, page: x0, xmax, y0, ymin, yh
-	/* 
-		- construct line array using block.xw
-		- unless something else happens, add line array and compare to page.yh?
-			- iterate array until last entry before sum>=yh
-			- repeat for other columns
-			- once all columns are full, or once block/section style changes,
-				- balance lines between columns
-				- write them, noting the x position on page after write
-			- eventually we're going to have to figure out the v-align stuff too
-	*/
+
 	console.log(x);
 	//console.log(pdf.cp, pdf.pages[0], pdf.pages.length);
-	/*
-	pdf.cp.stream = '.1 w 0 0 1 rg '+pdf.cp.box();
-	pdf.cp.startText();
-	pdf.cp.setStyle(6,16,'100%','0 g','c');
-	pdf.cp.addText('AD PRIMAM',1);
-	pdf.cp.setStyle(5,12,14,'0 1 1 0 k','j'); pdf.cp.addText('V. ');
-	pdf.cp.setStyle(1,12,14,'0 g'); pdf.cp.addText(txt);
-	pdf.cp.setStyle(5,12,14,'0 1 1 0 k'); pdf.cp.addText(' R. ');
-	pdf.cp.setStyle(2,12,14,'0 g'); pdf.cp.addText(txt);
-	pdf.cp.setStyle(5,12,14,'0 1 1 0 k'); pdf.cp.addText(' R. ');
-	pdf.cp.setStyle(3,12,14,'0 g'); pdf.cp.addText(txt);
-	pdf.cp.setStyle(5,12,14,'0 1 1 0 k'); pdf.cp.addText(' R. ');
-	pdf.cp.setStyle(4,12,14,'0 g'); pdf.cp.addText(txt,1);
-	pdf.cp.setStyle(1,12,14,'0 g'); pdf.cp.addText(txt1,1);
-	pdf.cp.setStyle(1,12,14,'0 g'); pdf.cp.addText(txt1,1);
-	pdf.cp.setStyle(1,12,14,'0 g'); pdf.cp.addText(txt1,1);
 
-	pdf.cp.setStyle(6,16,'200%','0 g','c'); pdf.cp.addText('AD PRIMAM',1);
-	pdf.cp.setStyle(1,12,14,'0 g','j'); pdf.cp.addText(txt1,1);
-	pdf.cp.setStyle(6,16,'200%','0 g','c'); pdf.cp.addText('AD PRIMAM',1);
-	pdf.cp.setStyle(1,12,14,'0 g','j'); pdf.cp.addText(txt1,1);
-	pdf.cp.setStyle(6,16,'200%','0 g','c'); pdf.cp.addText('AD PRIMAM',1);
-	pdf.cp.setStyle(1,12,14,'0 g','j'); pdf.cp.addText(txt1,1);
-	pdf.cp.setStyle(6,16,'200%','0 g','c'); pdf.cp.addText('AD PRIMAM',1);
-	pdf.cp.setStyle(1,12,14,'0 g','j'); pdf.cp.addText(txt1,1);
-	pdf.cp.endText();
-	*/
-	pr.trigger();
+pr.trigger();
 }).next(()=> { 
 	pr.trigger();
 }).finally(()=> { 
-	console.log('save');
+	console.log('save', (Date.now()-dt0)/1e3); dt0 = Date.now();
 	pdf.save(path.join(__dirname,'output.pdf'), pr.trigger);
-	console.log('yay we be done'); 
+	console.log('yay we be done', (Date.now()-dt0)/1e3); dt0 = Date.now();
 }).start();
 
 /*
