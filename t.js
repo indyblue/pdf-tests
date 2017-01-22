@@ -36,12 +36,12 @@ var dt0 = Date.now();
 pr.next(()=> {
 	pdf.init({
 		fonts: [
-			'./pdf/ttf/freeserif.ttf',
-			'./pdf/ttf/freeserifBold.ttf',
-			'./pdf/ttf/freeserifItalic.ttf',
-			'./pdf/ttf/freeserifBoldItalic.ttf',
-			'./pdf/ttf/FancyVR.ttf',
-			'./pdf/ttf/oldlondon.ttf'
+			'./ttf/freeserif.ttf',
+			'./ttf/freeserifBold.ttf',
+			'./ttf/freeserifItalic.ttf',
+			'./ttf/freeserifBoldItalic.ttf',
+			'./ttf/FancyVR.ttf',
+			'./ttf/oldlondon.ttf'
 		],
 		styles: {
 			default: style.qlegal({
@@ -140,7 +140,7 @@ pr.next(()=> {
 	var x = np.parseLine('  '+txt1,0);
 	np.popStyle();
 	np.pushStyle('drop');
-	for(var i=1;i<20;i++){
+	for(var i=1;i<100;i++){
 		//console.log('filler',i, 20);
 		var x = np.parseLine(txt1,3);
 	}
