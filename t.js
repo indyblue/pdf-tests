@@ -121,9 +121,11 @@ pr.next(()=> {
 // */
 	//*
 	np.pushStyle('drop');
-	for(var i=65; i<91;i++) {
-		console.log('dt',i, String.fromCharCode(i));
-		var x = np.parseLine(String.fromCharCode(i)+txt+' '+txt,2);
+	for(var j=0;j<4;j++){
+		for(var i=65; i<91;i++) {
+			//console.log('dt',i, String.fromCharCode(i));
+			var x = np.parseLine(String.fromCharCode(i)+txt+' '+txt,2);
+		}
 	}
 	np.popStyle();
 	//*
@@ -138,8 +140,8 @@ pr.next(()=> {
 	var x = np.parseLine('  '+txt1,0);
 	np.popStyle();
 	np.pushStyle('drop');
-	for(var i=1;i<4;i++){
-		console.log('filler',i, 4);
+	for(var i=1;i<20;i++){
+		//console.log('filler',i, 20);
 		var x = np.parseLine(txt1,3);
 	}
 	np.popStyle();
