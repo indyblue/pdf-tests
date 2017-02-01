@@ -45,14 +45,14 @@ pr.next(()=> {
 		],
 		styles: {
 			default: style.qlegal({
-				font:{size:8},
+				font:{size:8, lead:9},
 				block:{align:'j'},
-				section:{columns:3, spacing:0.1}
+				section:{columns:2, spacing:0.1}
 			}),
 			//default: 'qlegal',
 			vr: {font:{fid:5, color:'0 1 1 0 k'}},
 			rubric: {font:{fid:3, color:'0 1 1 0 k'}},
-			tilde: {font:{fid:6, color:'0 .5 .5 0 k' }},
+			tilde: {font:{fid:5, color:'.6 0 .4 .1 k' }},
 			b: {font:{fid:2}},
 			i: {font:{fid:3}},
 			bi: {font:{fid:4}},
@@ -74,7 +74,7 @@ pr.next(()=> {
 	*/
 	var txt = "De­clí­na a ma­lo, et fac bo­num: * et in­há­bi­ta in sǽ­cu­lum sǽ­cu­li.";
 	//var txt = "Declína a malo, et fac bonum: * et inhábita in sǽculum sǽculi.";
-	var txt1 = 'Beátus vir, qui non ábiit in consílio im­piórum, et in via peccatórum non ste­tit, * et in cáthedra pestiléntiæ non sedit: Sed in lege Dómini vo­lún­tas ejus, * et in lege ejus me­di­tá­bi­tur die ac nocte.\tEt erit tamquam lignum, quod plantátum est secus de­cúr­sus aquárum, * quod fructum suum dabit in témpore suo: Et fó­li­um ejus non défluet: * et ómnia quæ­cúm­que fáciet, prosperabúntur. Non sic ímpii, non sic: * sed tam­quam pulvis, quem prójicit ventus a fácie terræ. Ídeo non resúrgent ím­pii in judício: * neque peccatóres in concílio justórum. Quóniam novit Dó­mi­nus viam justórum: * et iter im­pi­ó­rum períbit.';
+	var txt1 = 'Be­á­tus vir, qui non ábi­it in con­sí­lio im­pi­ó­rum, et in via pec­ca­tó­rum non ste­tit, * et in cá­the­dra pes­ti­lén­tiæ non se­dit: Sed in le­ge Dó­mi­ni vo­lún­tas ejus, * et in le­ge ejus me­di­tá­bi­tur die ac noc­te. Et erit tam­quam lig­num, quod plan­tá­tum est se­cus de­cúr­sus aquá­rum, * quod fruc­tum su­um da­bit in tém­po­re suo: Et fó­li­um ejus non déf­lu­et: * et óm­nia quæ­cúm­que fá­ci­et, pros­pe­ra­bún­tur. Non sic ím­pii, non sic: * sed tam­quam pul­vis, quem pró­ji­cit ven­tus a fá­cie ter­ræ. Ideo non re­súr­gent ím­pii in ju­dí­cio: * ne­que pec­ca­tó­res in con­cí­lio jus­tó­rum. Quó­ni­am no­vit Dó­mi­nus vi­am jus­tó­rum: * et iter im­pi­ó­rum pe­rí­bit.';
 
 	np.pushStyle('head');
 	var x = np.parseLine('ad Vesperas',1);
@@ -140,11 +140,22 @@ pr.next(()=> {
 	var x = np.parseLine('  '+txt1,0);
 	np.popStyle();
 	np.pushStyle('drop');
-	for(var i=1;i<100;i++){
+	for(var i=1;i<9;i++){
 		//console.log('filler',i, 20);
 		var x = np.parseLine(txt1,3);
 	}
 	np.popStyle();
+
+	np.pushStyle('drop');
+	var rnd = 65 + Math.random()*(91-65);
+	console.log(rnd);
+	var rnd = 77.1;
+	for(var i=65; i<rnd;i++) {
+		//console.log('dt',i, String.fromCharCode(i));
+		var x = np.parseLine(String.fromCharCode(i)+txt+' '+txt,2);
+	}
+	np.popStyle();
+
 	//console.log('lb', np.lineBuffer);
 	//console.log('xw',np.style.block.xw);
 	// */
