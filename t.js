@@ -47,7 +47,14 @@ pr.next(()=> {
 			default: style.qlegal({
 				font:{size:8, lead:9},
 				block:{align:'j'},
-				section:{columns:2, spacing:0.1}
+				section:{columns:2, spacing:0.1},
+				page:{ margin:[ .3, .25, .25, .25],
+					header:{
+					suppress: [1],
+					font: {fid:1, size:6, color:'0 1 1 0 k'},
+					right:'{+inside}\t{+middle}\t[{#}]',
+					left:'[{#}]\t{-middle}\t{-inside}'
+				}}
 			}),
 			//default: 'qlegal',
 			vr: {font:{fid:5, color:'0 1 1 0 k'}},
@@ -78,6 +85,8 @@ pr.next(()=> {
 
 	np.pushStyle('head');
 	var x = np.parseLine('ad Vesperas',1);
+	np.setField('middle', 'ad Vesperas');
+	np.setField('inside', '');
 	np.popStyle();
 	np.pushStyle('vr');
 	var x = np.parseLine('V.',2);
@@ -123,8 +132,10 @@ pr.next(()=> {
 	np.pushStyle('drop');
 	for(var j=0;j<4;j++){
 		for(var i=65; i<91;i++) {
+			//np.setField('inside', String.fromCharCode(i));
 			//console.log('dt',i, String.fromCharCode(i));
-			var x = np.parseLine(String.fromCharCode(i)+txt+' '+txt,2);
+			var x = np.parseLine(String.fromCharCode(i)+txt+' '+txt,2,
+			{inside:String.fromCharCode(i) });
 		}
 	}
 	np.popStyle();
