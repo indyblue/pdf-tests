@@ -1,7 +1,7 @@
 var path = require('path');
 var promise = require('promise.das');
 var pdfTool = require('pdf-tool.das');
-var utf8 = require('utf8');
+//var utf8 = require('utf8');
 var style = pdfTool.style;
 
 var pdf = pdfTool.new();
