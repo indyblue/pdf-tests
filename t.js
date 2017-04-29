@@ -8,6 +8,7 @@ var pdf = pdfTool.new();
 var pr = promise.new();
 
 /*
+
 var ltr = style.letter();
 var qleg = style.qlegal({font:{fid:4, color:'0 1 1 0 k'}});
 promise.extend(ltr, {block:{_tabs:[
@@ -56,6 +57,7 @@ pr.next(()=> {
 					left:'[{#}]\t{-middle}\t{-inside}'
 				}}
 			}),
+			title: { section: {columns:1 } },
 			//default: 'qlegal',
 			vr: {font:{fid:5, color:'0 1 1 0 k'}},
 			rubric: {font:{fid:3, color:'0 1 1 0 k'}},
@@ -128,7 +130,7 @@ pr.next(()=> {
 	var x = np.parseLine('Vólu­cres cæ­li, et pis­ces ma­ris, * qui per­ám­bu­lant sé­mi­tas ma­ris.',2);
 	var x = np.parseLine('Dómi­ne, Dó­mi­nus nos­ter, * quam ad­mi­rá­bi­le est no­men tu­um in uni­vér­sa ter­ra!',2);
 // */
-	//*
+	/*
 	np.pushStyle('drop');
 	for(var j=0;j<4;j++){
 		for(var i=65; i<91;i++) {
@@ -139,7 +141,14 @@ pr.next(()=> {
 		}
 	}
 	np.popStyle();
-	//*
+	//*/
+
+	np.pushStyle('title');
+	np.pushStyle('head');
+	var x = np.parseLine('ad Vesperas titulum',1);
+	np.popStyle();
+	np.popStyle();
+
 	np.pushStyle('rubric');
 	var x = np.parseLine('  '+txt1,0);
 	np.popStyle();
