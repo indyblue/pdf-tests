@@ -1,4 +1,5 @@
 var path = require('path');
+var fs = require('fs');
 var promise = require('promise.das');
 var pdfTool = require('pdf-tool.das');
 //var utf8 = require('utf8');
@@ -35,16 +36,7 @@ console.log(p.units, p.x0, p.xmax, p.y0, p.ymin,
 // */
 var dt0 = Date.now();
 pr.next(()=> {
-	pdf.init({
-		fonts: [
-			'./ttf/freeserif.ttf',
-			'./ttf/freeserifBold.ttf',
-			'./ttf/freeserifItalic.ttf',
-			'./ttf/freeserifBoldItalic.ttf',
-			'./ttf/FancyVR.ttf',
-			'./ttf/oldlondon.ttf'
-		],
-		styles: {
+	var s = {
 			default: style.qlegal({
 				font:{size:8, lead:9},
 				block:{align:'j'},
@@ -61,6 +53,7 @@ pr.next(()=> {
 			//default: 'qlegal',
 			vr: {font:{fid:5, color:'0 1 1 0 k'}},
 			rubric: {font:{fid:3, color:'0 1 1 0 k'}},
+			nonrubric: {font:{fid:1, color:'0 g'}},
 			tilde: {font:{fid:5, color:'.6 0 .4 .1 k' }},
 			b: {font:{fid:2}},
 			i: {font:{fid:3}},
@@ -72,10 +65,33 @@ pr.next(()=> {
 			drop6: { block: { 
 				drop: { chars: 1, fid: 6, lead:45, size:45*1.4, color: '0 1 1 0 k' } } },
 			head: {font:{fid:6, size:14, lead:14, color:'0 1 1 0 k'},
-					block:{align:'c'}}
-		}
-	}, pr.trigger)
-}).next(()=> { 
+					block:{align:'c'}},
+			ind: { block: { firstLineIndent: .25 } }
+		};
+			s.d= s.drop;
+			s.r= s.rubric;
+			s.nr= s.nonrubric;
+			s.VR= s.vr;
+			console.log(s.d);
+	pdf.init({
+		fonts: [
+			'./ttf/freeserif.ttf',
+			'./ttf/freeserifBold.ttf',
+			'./ttf/freeserifItalic.ttf',
+			'./ttf/freeserifBoldItalic.ttf',
+			'./ttf/FancyVR.ttf',
+			'./ttf/oldlondon.ttf'
+		],
+		styles: s
+	}, pr.trigger);
+}).next(()=> {
+	var np = pdf.page;
+	var html = fs.readFileSync('/home/user/0das/pdf/Liturgy/Rituale_romanum/commendationis_animae.html', 'utf8');
+	np.writeHtml(html);
+	pr.trigger();
+}).next(()=> {
+	pr.trigger();
+	return;
 	console.log('create new page', (Date.now()-dt0)/1e3); dt0 = Date.now();
 	var np = pdf.page;
 	/*
@@ -168,7 +184,7 @@ pr.next(()=> {
 
 	np.pushStyle('drop');
 	var rnd = 65 + Math.random()*(91-65);
-	console.log(rnd);
+	//console.log(rnd);
 	var rnd = 77.1;
 	for(var i=65; i<rnd;i++) {
 		//console.log('dt',i, String.fromCharCode(i));
@@ -182,7 +198,7 @@ pr.next(()=> {
 	np.flushPage();
 	np.endPage();
 
-	console.log(x);
+	//console.log(x);
 	//console.log(pdf.cp, pdf.pages[0], pdf.pages.length);
 
 pr.trigger();
