@@ -8,37 +8,12 @@ var style = pdfTool.style;
 var pdf = pdfTool.new();
 var pr = promise.new();
 
-/*
-
-var ltr = style.letter();
-var qleg = style.qlegal({font:{fid:4, color:'0 1 1 0 k'}});
-promise.extend(ltr, {block:{_tabs:[
-	{ position: '.5*ppi' }, 
-	{ position: '1*ppi' }, 
-	{ position: '1.5*ppi' }, 
-	{ position: '2*ppi' }, 
-	{ position: '2.5*ppi' }, 
-	{position: 'this.xw',align:'l'}
-]}});
-console.log(qleg.block.xw, qleg.block.tabs);
-console.log(ltr.block.xw, ltr.block.tabs);
-var p = qleg.page;
-p.margin=1;
-p.gutter=1;
-//p.num=2;
-p.units='in';
-return;
-/*
-console.log(p.units, p.x0, p.xmax, p.y0, p.ymin,
-	p.getMargin(1), p.getMargin(2), p.getMargin(3), p.getMargin(4),
-	p.pointsPerUnit);
-//pr.debug='m';
-// */
 var dt0 = Date.now();
 pr.next(()=> {
+	var fs = 11;
 	var s = {
 			default: style.qlegal({
-				font:{size:8, lead:9},
+				font:{size:fs, lead:fs*9/8},
 				block:{align:'j'},
 				section:{columns:2, spacing:0.1},
 				page:{ margin:[ .3, .25, .25, .25],
@@ -52,27 +27,28 @@ pr.next(()=> {
 			title: { section: {columns:1 } },
 			//default: 'qlegal',
 			vr: {font:{fid:5, color:'0 1 1 0 k'}},
-			rubric: {font:{fid:3, color:'0 1 1 0 k'}},
+			rubric: {font:{size:fs*.75, lead:fs*.75*9/8, color:'0 1 1 0 k'}},
+			red: {font:{color:'0 1 1 0 k'}},
 			nonrubric: {font:{fid:1, color:'0 g'}},
 			tilde: {font:{fid:5, color:'.6 0 .4 .1 k' }},
 			b: {font:{fid:2}},
 			i: {font:{fid:3}},
 			bi: {font:{fid:4}},
 			sp1: {font:{spacing:1}},
-			sup: {font:{rise:4, size:5 }},
+			sup: {font:{rise:0.4*fs, size:0.6*fs }},
 			drop: { block: { 
-				drop: { chars: 1, fid: 6, lead:24, size:24*1.3, color: '0 1 1 0 k' } } },
+				drop: { chars: 1, fid: 6, lead:3*fs, size:3*fs*1.3, color: '0 1 1 0 k' } } },
 			drop6: { block: { 
-				drop: { chars: 1, fid: 6, lead:45, size:45*1.4, color: '0 1 1 0 k' } } },
-			head: {font:{fid:6, size:14, lead:14, color:'0 1 1 0 k'},
-					block:{align:'c'}},
+				drop: { chars: 1, fid: 6, lead:6*fs, size:6*fs*1.4, color: '0 1 1 0 k' } } },
+			head: {font:{fid:6, size:2*fs, lead:2*fs, color:'0 1 1 0 k'},
+					block:{align:'c'},
+					section:{columns:1}},
 			ind: { block: { firstLineIndent: .25 } }
 		};
 			s.d= s.drop;
 			s.r= s.rubric;
 			s.nr= s.nonrubric;
 			s.VR= s.vr;
-			console.log(s.d);
 	pdf.init({
 		fonts: [
 			'./ttf/freeserif.ttf',
@@ -86,7 +62,9 @@ pr.next(()=> {
 	}, pr.trigger);
 }).next(()=> {
 	var np = pdf.page;
-	var html = fs.readFileSync('/home/user/0das/pdf/Liturgy/Rituale_romanum/commendationis_animae.html', 'utf8');
+
+	//var html = fs.readFileSync('/home/user/0das/pdf/Liturgy/Rituale_romanum/commendationis_animae.html', 'utf8');
+	var html = fs.readFileSync('/home/user/0das/pdf/Liturgy/Rituale_romanum/commendationis_animae.vi.html', 'utf8');
 	np.writeHtml(html);
 	pr.trigger();
 }).next(()=> {
