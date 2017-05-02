@@ -10,11 +10,11 @@ var pr = promise.new();
 
 var dt0 = Date.now();
 pr.next(()=> {
-	var fs = 11;
+	var fs = 10;
 	var s = {
 			default: style.qlegal({
 				font:{size:fs, lead:fs*9/8},
-				block:{align:'j'},
+				block:{align:'j', fill:'tilde'},
 				section:{columns:2, spacing:0.1},
 				page:{ margin:[ .3, .25, .25, .25],
 					header:{
@@ -27,7 +27,8 @@ pr.next(()=> {
 			title: { section: {columns:1 } },
 			//default: 'qlegal',
 			vr: {font:{fid:5, color:'0 1 1 0 k'}},
-			rubric: {font:{size:fs*.75, lead:fs*.75*9/8, color:'0 1 1 0 k'}},
+			rubric: {font:{size:fs*.75, lead:fs*.75*9/8, color:'0 1 1 0 k'},
+				block:{fill:''}},
 			red: {font:{color:'0 1 1 0 k'}},
 			nonrubric: {font:{fid:1, color:'0 g'}},
 			tilde: {font:{fid:5, color:'.6 0 .4 .1 k' }},
@@ -43,7 +44,8 @@ pr.next(()=> {
 			head: {font:{fid:6, size:2*fs, lead:2*fs, color:'0 1 1 0 k'},
 					block:{align:'c'},
 					section:{columns:1}},
-			ind: { block: { firstLineIndent: .25 } }
+			ind: { block: { firstLineIndent: .25 },
+				font:{size:fs, lead:fs*9/8 }}
 		};
 			s.d= s.drop;
 			s.r= s.rubric;
