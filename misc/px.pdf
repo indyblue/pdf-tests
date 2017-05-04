@@ -1,0 +1,181 @@
+%PDF-1.5
+
+1 0 obj
+ << /Type /Catalog
+   /Pages 2 0 R
+	/PageMode /UseOutlines
+	/Outlines 3 0 R
+ >>
+endobj
+
+2 0 obj
+ << /Type /Pages
+   /Kids [3 0 R  5 0 R]
+	/MediaBox [0 0 500 500]
+	/Resources << 
+	  /Font << 
+	    /ft << /Type/Font /Subtype/Type1 /BaseFont/Times >>
+	    /ftb << /Type/Font /Subtype/Type1 /BaseFont/Times-Bold >>
+	    /ftbi << /Type/Font /Subtype/Type1 /BaseFont/Times-BoldItalic >> 
+	  >> 
+	  /ColorSpace << /Cs1 6 0 R >>
+	>>
+	/Count 2
+ >>
+endobj
+
+3 0 obj
+ << /Type/Page
+   /Parent 2 0 R
+	/Contents 4 0 R
+ >>
+endobj
+
+4 0 obj 
+ << /Length 500 >>
+stream
+ 2 J
+ BT
+ /ft 12 Tf
+ 0 Tc
+ 0 Tw
+ 30 460 TD
+ [(This is a test) -4265 (whatever)] TJ 
+ 0 -14 TD
+ [(line 2)] TJ
+ T* [(line 3) -7000 (and more)] TJ
+ (line 4) '
+ ET
+ 5 w
+ 0 1 0 RG
+ 0 0 1 rg
+ 50 50 400 200 re 
+ 100 100 300 100 re
+ 0 w
+ 0 500 30 -30 re
+ B*
+ 0 1 1 rg
+ 0 460 30 1 re
+ B*
+ 0 0 1 RG
+ /Cs1 cs 1 scn
+ BT
+ /ftbi 40 Tf
+ 170 140 TD
+ [(Middling)] TJ
+ ET
+endstream
+endobj
+
+5 0 obj
+ << /Type/Page
+   /Parent 2 0 R
+	/Contents [ 
+		9 0 R
+		10 0 R
+		8 0 R
+		12 0 R
+		11 0 R
+		4 0 R
+		12 0 R
+	]
+ >>
+endobj
+
+6 0 obj
+ [ /Separation /RedLetter /DeviceCMYK 
+ << /FunctionType 2 /Domain [0 1]
+  /Range [0 1 0 1 0 1 0 1]
+  /C0 [0 0 0 0] /C1 [0 1 1 0]
+  /Domain [0 1] /N 1 >> ]
+endobj
+
+7 0 obj
+ /ColorSpace << /CS1 6 0 R >>
+endobj
+
+8 0 obj
+ << /Length 500 >>
+stream
+ 2 J
+ BT
+ /ft 12 Tf
+ 0 Tc
+ 0 Tw
+ 30 460 TD
+ [(This is a test) -4265 (whatever)] TJ 
+ 0 -14 TD
+ [(line 2)] TJ
+ T* [(line 3) -7000 (and more)] TJ
+ (line 4) '
+ ET
+ 5 w
+ 0 1 0 RG
+ 0 0 1 rg
+ 50 50 400 200 re 
+ 100 100 300 100 re
+ 0 w
+ 0 500 30 -30 re
+ B*
+ 0 1 1 rg
+ 0 460 30 1 re
+ B*
+ 0 0 1 RG
+ /Cs1 cs 1 scn
+ BT
+ /ftbi 40 Tf
+ 170 140 TD
+ [(Middlinggg)] TJ
+ ET
+endstream
+endobj
+
+9 0 obj
+ << /Length 500 >>
+stream
+ q 1 0 0 1 0 0 cm 
+% half size
+ q .5 0 0 .5 0 0 cm 
+endstream
+endobj
+
+10 0 obj
+ << /Length 500 >>
+stream
+ q 1 0 0 1 0 250 cm
+endstream
+endobj
+
+11 0 obj
+ << /Length 500 >>
+stream
+% flip (origin is top right corner in this case)
+ q -1 0 0 -1 1000 750 cm
+endstream
+endobj
+
+12 0 obj
+ << /Length 500 >>
+stream
+ Q
+endstream
+endobj
+
+xref
+0 13
+0000000000 65536 f 
+0000000000 00000 n
+0000000000 00000 n
+0000000000 00000 n
+0000000000 00000 n
+0000000000 00000 n
+0000000000 00000 n
+0000000000 00000 n
+
+trailer
+  << /Size 5
+    /Root 1 0 R
+  >>
+startxref
+10
+%%EOF
