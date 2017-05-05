@@ -2,7 +2,6 @@ var path = require('path');
 var fs = require('fs');
 var promise = require('promise.das');
 var pdfTool = require('pdf-tool.das');
-//var utf8 = require('utf8');
 var style = pdfTool.style;
 
 var pdf = pdfTool.new();
@@ -60,7 +59,13 @@ pr.next(()=> {
 			'./ttf/FancyVR.ttf',
 			'./ttf/oldlondon.ttf'
 		],
-		styles: s
+		styles: s,
+		layout: {
+			layout: [1,-2],
+			book:1,
+			sig:0,
+			stack:1
+		}
 	}, pr.trigger);
 }).next(()=> {
 //*
@@ -71,7 +76,7 @@ pr.next(()=> {
 // */
 	pr.trigger();
 }).next(()=> {
-/*
+//*
 	console.log('create new page', (Date.now()-dt0)/1e3); dt0 = Date.now();
 	var np = pdf.page;
 
@@ -80,9 +85,9 @@ pr.next(()=> {
 	np.pushStyle('drop6');
 	var rnd = 65 + Math.random()*(91-65);
 	//console.log(rnd);
-	var rnd = 76;
+	var rnd = 91;
 	for(var i=65; i<rnd;i++) {
-		var x = np.parseLine(String.fromCharCode(i)+txt.repeat(3)+' in-ha-bi-ta'.repeat(i-63),2);
+		var x = np.parseLine(String.fromCharCode(i)+txt.repeat(5).repeat(i-63),2);
 	}
 	np.popStyle();
 
@@ -93,25 +98,10 @@ pr.next(()=> {
 pr.trigger();
 }).next(()=> { 
 	pr.trigger();
-}).finally(()=> { 
+}).next(()=> { 
 	console.log('save', (Date.now()-dt0)/1e3); dt0 = Date.now();
 	pdf.save(path.join(__dirname,'output.pdf'), pr.trigger);
-	console.log('yay we be done', (Date.now()-dt0)/1e3); dt0 = Date.now();
+}).finally(()=> {
+	console.log('done!', (Date.now()-dt0)/1e3); dt0 = Date.now();
 }).start();
 
-/*
-ttf.parse('./pdf/ttf/FancyVR.ttf', createttf);
-ttf.parse('./pdf/ttf/oldlondon.ttf', createttf);
-ttf.parse('./pdf/ttf/freeserif.ttf', createttf);
-ttf.parse('./pdf/ttf/freeserifBold.ttf', createttf);
-ttf.parse('./pdf/ttf/freeserifItalic.ttf', createttf);
-ttf.parse('./pdf/ttf/freeserifBoldItalic.ttf', createttf);
-
-function createttf(f) {
-	ttf.save('', f, null);
-	//console.log(ttf.stringify(f,null,2));
-	tcnt--;
-	if(tcnt==0) console.log('all done');
-	//else console.log(tcnt);
-}
-*/
