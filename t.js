@@ -76,9 +76,9 @@ pr.next(()=> {
 // */
 	pr.trigger();
 }).next(()=> {
+	var np = pdf.page;
 //*
 	console.log('create new page', (Date.now()-dt0)/1e3); dt0 = Date.now();
-	var np = pdf.page;
 
 	var txt = "De­clí­na a ma­lo, et fac bo­num: * et in­há­bi­ta in sǽ­cu­lum sǽ­cu­li.";
 
@@ -87,14 +87,14 @@ pr.next(()=> {
 	//console.log(rnd);
 	var rnd = 91;
 	for(var i=65; i<rnd;i++) {
-		var x = np.parseLine(String.fromCharCode(i)+txt.repeat(5).repeat(i-63),2);
+		var x = np.parseLine(String.fromCharCode(i)+txt.repeat(5),2);
 	}
 	np.popStyle();
 
-	np.flushPage();
-	np.endPage();
 
 // */
+	np.flushPage();
+	np.endPage();
 pr.trigger();
 }).next(()=> { 
 	pr.trigger();
