@@ -50,6 +50,13 @@ pr.next(()=> {
 			s.r= s.rubric;
 			s.nr= s.nonrubric;
 			s.VR= s.vr;
+
+		var lout = {
+			book:1,
+			sig:5,
+			stack:1
+		};
+		lout = 0; // comment this line to print q-legal booklet form!
 	pdf.init({
 		fonts: [
 			'./ttf/freeserif.ttf',
@@ -60,12 +67,7 @@ pr.next(()=> {
 			'./ttf/oldlondon.ttf'
 		],
 		styles: s,
-		layout: {
-			layout: [1,-2],
-			book:1,
-			sig:0,
-			stack:1
-		}
+		layout: lout
 	}, pr.trigger);
 }).next(()=> {
 //*
@@ -87,7 +89,7 @@ pr.next(()=> {
 	//console.log(rnd);
 	var rnd = 91;
 	for(var i=65; i<rnd;i++) {
-		var x = np.parseLine(String.fromCharCode(i)+txt.repeat(5),2);
+		var x = np.parseLine(String.fromCharCode(i)+txt.repeat(10),2);
 	}
 	np.popStyle();
 
