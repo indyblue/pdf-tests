@@ -5,7 +5,9 @@
   "main": "t.js",
   "dependencies": {
   	"promise.das": "git://github.com/indyblue/promise.das.git",
-  	"pdf-tool.das": "git://github.com/indyblue/pdf-tool.das.git"
+  	"pdf-tool.das": "git://github.com/indyblue/pdf-tool.das.git",
+  	"promise.das": "~/www/node/das/my_modules/promise.das",
+  	"pdf-tool.das": "~/www/node/das/my_modules/pdf-tool.das"
   },
   "devDependencies": {},
   "scripts": {
